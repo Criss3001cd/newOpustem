@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/duban/OneDrive/Documentos/NetBeansProjects/Opustem/web/actualizarSancion.jsp</file>
+            <file>file:/C:/Users/duban/OneDrive/Documentos/NetBeansProjects/Opustem/web/registrarSancion.jsp</file>
             <file>file:/C:/Users/duban/OneDrive/Documentos/NetBeansProjects/Opustem/web/consultarSancion.jsp</file>
-            <file>file:/C:/Users/duban/OneDrive/Documentos/NetBeansProjects/Opustem/web/actualizarEvento.jsp</file>
             <file>file:/C:/Users/duban/OneDrive/Documentos/NetBeansProjects/Opustem/web/index.jsp</file>
-            <file>file:/C:/Users/duban/OneDrive/Documentos/NetBeansProjects/Opustem/web/actualizarUser.jsp</file>
-            <file>file:/C:/Users/duban/OneDrive/Documentos/NetBeansProjects/Opustem/web/consultarTipoEvento.jsp</file>
+            <file>file:/C:/Users/duban/OneDrive/Documentos/NetBeansProjects/Opustem/src/java/Controlador/SancionControlador.java</file>
             <file>file:/C:/Users/duban/OneDrive/Documentos/NetBeansProjects/Opustem/web/menu.jsp</file>
         </group>
     </open-files>

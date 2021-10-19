@@ -40,14 +40,13 @@ public class SancionControlador extends HttpServlet {
         String IdUsuarioFK = request.getParameter("textIdUsuario");
         String IdEventoFK = request.getParameter("textIdEvento");
         String FechaSancion = request.getParameter("textFecha");
-        String HoraSancion = request.getParameter("textHora");
         String Descripcion = request.getParameter("textDescripcion");
         
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         
         
         SancionVO sanVO = new SancionVO(IdSancion, IdTipoSancionFK, IdUsuarioFK, IdEventoFK, 
-                                        FechaSancion, HoraSancion, Descripcion);
+                                        FechaSancion, Descripcion);
         
         SancionDAO sanDAO =new SancionDAO(sanVO);
         
@@ -55,11 +54,11 @@ public class SancionControlador extends HttpServlet {
         switch (opcion){
             case 1:
                 if(sanDAO.agregarRegistro()){
-                    request.setAttribute("mensajeÉxito", "Sanción registrada de forma exitosa");
+                    response.sendRedirect(request.getContextPath()+"/registrarSancion.jsp"+"?mensajeExito="+1);
                 }else{
-                    request.setAttribute("mensajeError", "La sanción no se pudo registrar");
+                    response.sendRedirect(request.getContextPath()+"/registrarSancion.jsp"+"?mensajeError="+1);
                 }
-                request.getRequestDispatcher("registrarSancion.jsp").forward(request, response);
+                
                 break;
             case 2: //Actualizar Registro
                 
@@ -74,12 +73,10 @@ public class SancionControlador extends HttpServlet {
               
             case 3:
                  if (sanDAO.actualizarRegistro()) {
-                    request.setAttribute("mensajeÉxito", "La sanción se actualizó correctamente");
+                    response.sendRedirect(request.getContextPath()+"/actualizarSancion.jsp"+"?mensajeExito="+1);
                 } else {
-                    request.setAttribute("mensajeError", "La sanción  NO se actualizó correctamente");
-
-                }
-                request.getRequestDispatcher("actualizarSancion.jsp").forward(request, response);
+                    response.sendRedirect(request.getContextPath()+"/actualizarSancion.jsp"+"?mensajeError="+1);
+                }            
                 break;
                 
                 

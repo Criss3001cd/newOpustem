@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="ModeloVO.UsuarioVO"%>
 <!DOCTYPE html>
+
 <%
     response.setHeader("Pragma", "No-cache");
     response.setHeader("Cache-control", "no-cache,no-store,must-revalidate");
@@ -30,8 +31,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel='shortcut icon' type='image/x-icon' href='assets/img/tem.ico' />
     </head>
     <body>
         

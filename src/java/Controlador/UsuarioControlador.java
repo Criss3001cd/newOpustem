@@ -140,10 +140,12 @@ public class UsuarioControlador extends HttpServlet {
                       */
                     
                 }
-                else {
+                else { 
+                    response.sendRedirect(request.getContextPath()+"/index.jsp"+"?mensajeError="+1);
+                    /*
                       request.setAttribute("mensajeError", "Datos de inicio de sesión incorrectos");
                       request.getRequestDispatcher("index.jsp").forward(request, response);
-                      }
+                      */}
                 break;
                 
             case 4:

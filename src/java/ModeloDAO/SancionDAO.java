@@ -36,7 +36,6 @@ public class SancionDAO extends Conexion implements Crud{
     private String IdUsuarioFK = "";
     private String IdEventoFK = "";
     private String FechaSancion = "";
-    private String HoraSancion = "";
     private String Descripcion = "";
 
     public SancionDAO() {
@@ -53,7 +52,6 @@ public class SancionDAO extends Conexion implements Crud{
             IdUsuarioFK = SanVO.getIdUsuarioFK();
             IdEventoFK = SanVO.getIdEventoFK();
             FechaSancion = SanVO.getFechaSancion();
-            HoraSancion = SanVO.getHoraSancion();
             Descripcion = SanVO.getDescripcion();
         } catch (Exception e) {
             Logger.getLogger(SancionDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -75,15 +73,13 @@ public class SancionDAO extends Conexion implements Crud{
             }
             max++;
             sql = "insert into Sancion ( IdSancion,IdTipoSancionFK, IdUsuarioFK,"
-                + "IdEventoFK, FechaSancion, HoraSancion, Descripcion) values(?,?,?,?,?,?,?)";
+                + "IdEventoFK, Descripcion) values(?,?,?,?,?)";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Integer.toString(max));
             puente.setString(2, IdTipoSancionFK);
             puente.setString(3, IdUsuarioFK);
             puente.setString(4, IdEventoFK);
-            puente.setString(5, FechaSancion);
-            puente.setString(6, HoraSancion);
-            puente.setString(7, Descripcion);
+            puente.setString(5, Descripcion);
             puente.executeUpdate();
             operacion = true;
 
@@ -103,16 +99,14 @@ public class SancionDAO extends Conexion implements Crud{
     @Override
     public boolean actualizarRegistro() {
         try {
-            sql = "update Sancion set IdTipoSancionFK=?, IdUsuarioFK=?, IdEventoFK=?, FechaSancion=?, "
-                    + "HoraSancion=?, Descripcion=? where IdSancion=?";
+            sql = "update Sancion set IdTipoSancionFK=?, IdUsuarioFK=?, IdEventoFK=?, "
+                    + "Descripcion=? where IdSancion=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, IdTipoSancionFK);
             puente.setString(2, IdUsuarioFK);
             puente.setString(3, IdEventoFK);
-            puente.setString(4, FechaSancion);
-            puente.setString(5, HoraSancion);
-            puente.setString(6, Descripcion);
-            puente.setString(7, IdSancion);
+            puente.setString(4, Descripcion);
+            puente.setString(5, IdSancion);
             puente.executeUpdate();
             operacion = true;
 
@@ -147,7 +141,7 @@ public class SancionDAO extends Conexion implements Crud{
                 
                 SancionVO  SanVO= new SancionVO(mensajero.getString(1),mensajero.getString(2)
                                         ,mensajero.getString(3),mensajero.getString(4)
-                                        ,mensajero.getString(5),mensajero.getString(6),mensajero.getString(7));
+                                        ,mensajero.getString(5),mensajero.getString(6));
                 ListaSanciones.add(SanVO);
             }
         } catch (Exception e) {
@@ -176,8 +170,8 @@ public class SancionDAO extends Conexion implements Crud{
             while (mensajero.next()){
                 sanVO = new SancionVO(IdSancion,mensajero.getString(2)
                                         ,mensajero.getString(3), mensajero.getString(4),
-                                           mensajero.getString(5), mensajero.getString(6),
-                                            mensajero.getString(7));
+                                           mensajero.getString(5), mensajero.getString(6)
+                                           );
             }
         } catch (Exception e) {
             Logger.getLogger(SancionDAO.class.getName()).log(Level.SEVERE, null, e); 

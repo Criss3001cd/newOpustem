@@ -1,8 +1,9 @@
 <%-- 
     Document   : consultarSancion
-    Created on : 29/07/2021, 02:39:35 PM
+    Created on : 17/10/2021, 01:09:59 PM
     Author     : duban
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="ModeloDAO.TipoSancionDAO"%>
 <%@page import="ModeloVO.TipoSancionVO"%>
@@ -14,94 +15,126 @@
 <%@include file="Sesiones.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <link rel="stylesheet" href="css/style.css">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
-    <title>Paginacion</title>
-</head>
-<body>
-    <div class="sidebar">
-    <div class="logo-details">
-        
-      <i class='bx bxs-time-five icon' ></i>
-      <a href="menu.jsp">
-        <div class="logo_name">Opustem</div>
-        </a>
-        <i class='bx bx-menu' id="btn" ></i>
-    </div>
-    <ul class="nav-list">
-      <li>
-       <a href="consultarUsuario.jsp">
-         <i class='bx bx-user' ></i>
-         <span class="links_name">Usuarios</span>
-       </a>
-       <span class="tooltip">Usuarios</span>
-     </li>
-     <li>
-       <a href="consultarPermiso.jsp">
-         <i class='bx bxs-spreadsheet' ></i>
-         <span class="links_name">Permisos</span>
-       </a>
-       <span class="tooltip">Permisos</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bxs-calendar-event' ></i>
-         <span class="links_name">Eventos</span>
-       </a>
-       <span class="tooltip">Eventos</span>
-     </li>
-     <li>
-       <a href="consultarSancion.jsp">
-         <i class='bx bxs-info-square'></i>
-         <span class="links_name">Sanciones</span>
-       </a>
-       <span class="tooltip">Sanciones</span>
-     </li>
-     <li class="profile">
-         <div class="profile-details">
-           <img src="profile.jpg" alt="profileImg">
-           <div class="name_job">
-             <div class="name">Prem Shahi</div>
-             <div class="job">Web designer</div>
-           </div>
-         </div>
-         <i class='bx bx-log-out' id="log_out" ></i>
-     </li>
-    </ul>
-  </div>
-    <section class="home-section">
-        <div class="container col-md-12">
-          <nav class="navbar navbar-light" style="border-radius: 20px; background-color: #160E75;">
 
-                <h1 class="text-light font-italic">Bienvenido: <%=usuario%></h1>
-                <form method="post" action="Sesiones">
-                    <button type="submit" class="btn btn-secondary mb-2">Cerrar Sesión</button>
+
+<!-- index.html  21 Nov 2019 03:44:50 GMT -->
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Consultar Sanción</title>
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="assets/css/app.min.css">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <!-- Custom style CSS -->
+  <link rel="stylesheet" href="assets/css/custom.css">
+  <link rel='shortcut icon' type='image/x-icon' href='assets/img/tem.ico' />
+</head>
+
+<body>
+  <div class="loader"></div>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <nav class="navbar navbar-expand-lg main-navbar sticky">
+        <div class="form-inline mr-auto">
+          <ul class="navbar-nav mr-3">
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg
+									collapse-btn"> <i data-feather="align-justify"></i></a></li>
+            <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
+                <i data-feather="maximize"></i>
+              </a></li>
+            
+          </ul>
+        </div>
+        <ul class="navbar-nav navbar-right">
+        
+          <li class="dropdown"><a href="#" data-toggle="dropdown"
+              class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="assets/img/user.jpg"
+                class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
+            <div class="dropdown-menu dropdown-menu-right pullDown">
+              <div class="dropdown-title">Usuario: <%=usuario%></div>
+              <a href="profile.html" class="dropdown-item has-icon"> <i class="far
+										fa-user"></i> Perfil
+              </a>  
+              <div class="dropdown-divider"></div>
+              <form method="post" action="Sesiones">
+                  <a class="dropdown-item has-icon text-danger" href="Sesiones"> <i class="fas fa-sign-out-alt"></i>
+                Cerrar Sesión
+              </a>
 
                 </form>
-            </nav>
-        </div>
-                <center><h1>Consultar Sanciones</h1>
-                <a href="registrarSancion.jsp" class="btn btn-info btn-block col-md-2" >Registrar una Sanción</a></center>
-    <div class="container" style="margin-top: 10px;padding: 5px">
-    <table id="tablax" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <th>Id Sanción</th>
-                <th>Tipo de Sanción</th>
-                <th>Nombre del Usuario</th>
-                <th>Id del Evento</th>
-                <th>Fecha de la Sanción</th>
-                <th>Hora de la Sanción</th>
-                <th>Descripcción</th>
-                <th>Acciones</th>
-        </thead>
-        <%
+              
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="main-sidebar sidebar-style-2">
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a href="index.html"> <img alt="image" src="assets/img/opus.png" class="header-logo" /> <span
+                class="logo-name">Opustem</span>
+            </a>
+          </div>
+          <ul class="sidebar-menu">
+            <li class="menu-header">Módulos</li>
+            <li class="dropdown">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="users"></i><span>Usuarios</span></a>
+            <ul class="dropdown-menu">
+              <li><a class="nav-link" href="consultarUsuario.jsp">Consultar Usuarios</a></li>
+              <li><a class="nav-link" href="registrarUser.jsp">Registrar Usuario NUEVO</a></li>
+            </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="book"></i></i><span>Permisos</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="consultarPermiso.jsp">Consultar Permisos</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="calendar"></i></i><span>Eventos</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="consultarEvento.jsp">Consultar Eventos</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="alert-triangle"></i><span>Sanciones</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="consultarSancion.jsp">Consultar Sanciones</a></li>
+                <li><a class="nav-link" href="registrarSancion.jsp">Registrar Sanción</a></li>
+              </ul>
+            </li>
+          </ul>
+        </aside>
+      </div>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Sanciones</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="table-1">
+                        <thead>
+                          <tr>
+                            <th class="text-center">
+                              Id Sanción
+                            </th>
+                            <th>Tipo de Sanción</th>
+                            <th>Nombre del Usuario</th>
+                            <th>Id del Evento</th>
+                            <th>Fecha de Sanción</th>
+                            <th>Descipción</th>
+                            <th>Acciones</th>
+                          </tr>
+                        </thead>
+                        <%
                                    
                      SancionVO SanVO = new SancionVO();
                      SancionDAO SanDAO = new SancionDAO();
@@ -111,7 +144,7 @@
                          SanVO = listaSanciones.get(i); 
                      
                 %>
-        <tbody>
+                        <tbody>
             <tr>
                 <%
                     
@@ -130,7 +163,6 @@
                 <td><%=usuVO.getAliasUsuario()%></td>
                 <td><%=SanVO.getIdEventoFK()%></td>
                 <td><%=SanVO.getFechaSancion()%></td>
-                <td><%=SanVO.getHoraSancion()%></td>
                 <td><%=SanVO.getDescripcion()%></td>
                 <td>
                     <form method="post" action="Sancion">
@@ -142,75 +174,130 @@
                 </td>
             </tr>
         </tbody>
-        <% }%>
-    </table>
-</div>
-    
-</section>
-
-    <!-- JQUERY -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
-        </script>
-    <!-- DATATABLES -->
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
-    </script>
-    <!-- BOOTSTRAP -->
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
-    </script>
-    <script>
-  let sidebar = document.querySelector(".sidebar");
-  let closeBtn = document.querySelector("#btn");
-  let searchBtn = document.querySelector(".bx-search");
-
-  closeBtn.addEventListener("click", ()=>{
-    sidebar.classList.toggle("open");
-    menuBtnChange();//calling the function(optional)
-  });
-
-  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
-    sidebar.classList.toggle("open");
-    menuBtnChange(); //calling the function(optional)
-  });
-
-  // following are the code to change sidebar button(optional)
-  function menuBtnChange() {
-   if(sidebar.classList.contains("open")){
-     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
-   }else {
-     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
-   }
-  }
-  </script>
-    <script>
-        $(document).ready(function () {
-            $('#tablax').DataTable({
-                language: {
-                    processing: "Tratamiento en curso...",
-                    search: "Buscar&nbsp;:",
-                    lengthMenu: "Agrupar de _MENU_ items",
-                    info: "Mostrando del item _START_ al _END_ de un total de _TOTAL_ items",
-                    infoEmpty: "No existen datos.",
-                    infoFiltered: "(filtrado de _MAX_ elementos en total)",
-                    infoPostFix: "",
-                    loadingRecords: "Cargando...",
-                    zeroRecords: "No se encontraron datos con tu busqueda",
-                    emptyTable: "No hay datos disponibles en la tabla.",
-                    paginate: {
-                        first: "Primero",
-                        previous: "Anterior",
-                        next: "Siguiente",
-                        last: "Ultimo"
-                    },
-                    aria: {
-                        sortAscending: ": active para ordenar la columna en orden ascendente",
-                        sortDescending: ": active para ordenar la columna en orden descendente"
-                    }
-                },
-                scrollY: 400,
-                lengthMenu: [ [10, 25, -1], [10, 25, "All"] ],
-            });
-        });
-    </script>
+                        <% }%>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="settingSidebar">
+          <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+          </a>
+          <div class="settingSidebar-body ps-container ps-theme-default">
+            <div class=" fade show active">
+              <div class="setting-panel-header">Setting Panel
+              </div>
+              <div class="p-15 border-bottom">
+                <h6 class="font-medium m-b-10">Select Layout</h6>
+                <div class="selectgroup layout-color w-50">
+                  <label class="selectgroup-item">
+                    <input type="radio" name="value" value="1" class="selectgroup-input-radio select-layout" checked>
+                    <span class="selectgroup-button">Light</span>
+                  </label>
+                  <label class="selectgroup-item">
+                    <input type="radio" name="value" value="2" class="selectgroup-input-radio select-layout">
+                    <span class="selectgroup-button">Dark</span>
+                  </label>
+                </div>
+              </div>
+              <div class="p-15 border-bottom">
+                <h6 class="font-medium m-b-10">Sidebar Color</h6>
+                <div class="selectgroup selectgroup-pills sidebar-color">
+                  <label class="selectgroup-item">
+                    <input type="radio" name="icon-input" value="1" class="selectgroup-input select-sidebar">
+                    <span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
+                      data-original-title="Light Sidebar"><i class="fas fa-sun"></i></span>
+                  </label>
+                  <label class="selectgroup-item">
+                    <input type="radio" name="icon-input" value="2" class="selectgroup-input select-sidebar" checked>
+                    <span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
+                      data-original-title="Dark Sidebar"><i class="fas fa-moon"></i></span>
+                  </label>
+                </div>
+              </div>
+              <div class="p-15 border-bottom">
+                <h6 class="font-medium m-b-10">Color Theme</h6>
+                <div class="theme-setting-options">
+                  <ul class="choose-theme list-unstyled mb-0">
+                    <li title="white" class="active">
+                      <div class="white"></div>
+                    </li>
+                    <li title="cyan">
+                      <div class="cyan"></div>
+                    </li>
+                    <li title="black">
+                      <div class="black"></div>
+                    </li>
+                    <li title="purple">
+                      <div class="purple"></div>
+                    </li>
+                    <li title="orange">
+                      <div class="orange"></div>
+                    </li>
+                    <li title="green">
+                      <div class="green"></div>
+                    </li>
+                    <li title="red">
+                      <div class="red"></div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="p-15 border-bottom">
+                <div class="theme-setting-options">
+                  <label class="m-b-0">
+                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
+                      id="mini_sidebar_setting">
+                    <span class="custom-switch-indicator"></span>
+                    <span class="control-label p-l-10">Mini Sidebar</span>
+                  </label>
+                </div>
+              </div>
+              <div class="p-15 border-bottom">
+                <div class="theme-setting-options">
+                  <label class="m-b-0">
+                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
+                      id="sticky_header_setting">
+                    <span class="custom-switch-indicator"></span>
+                    <span class="control-label p-l-10">Sticky Header</span>
+                  </label>
+                </div>
+              </div>
+              <div class="mt-4 mb-4 p-3 align-center rt-sidebar-last-ele">
+                <a href="#" class="btn btn-icon icon-left btn-primary btn-restore-theme">
+                  <i class="fas fa-undo"></i> Restore Default
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="main-footer">
+        <div class="footer-left">
+          <a href="templateshub.net">Templateshub</a></a>
+        </div>
+        <div class="footer-right">
+        </div>
+      </footer>
+    </div>
+  </div>
+  <!-- General JS Scripts -->
+  <script src="assets/js/app.min.js"></script>
+  <!-- JS Libraies -->
+  <script src="assets/bundles/datatables/datatables.min.js"></script>
+  <script src="assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+  <script src="assets/bundles/jquery-ui/jquery-ui.min.js"></script>
+  <!-- Page Specific JS File -->
+  <script src="assets/js/page/datatables.js"></script>
+  <!-- Template JS File -->
+  <script src="assets/js/scripts.js"></script>
+  <!-- Custom JS File -->
+  <script src="assets/js/custom.js"></script>
 </body>
+
+
+<!-- datatables.html  21 Nov 2019 03:55:25 GMT -->
 </html>

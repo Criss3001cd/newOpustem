@@ -16,19 +16,17 @@ public class SancionVO {
     private String IdUsuarioFK;
     private String IdEventoFK;
     private String FechaSancion;
-    private String HoraSancion;
     private String Descripcion;
 
     public SancionVO() {
     }
 
-    public SancionVO(String IdSancion, String IdTipoSancionFK, String IdUsuarioFK, String IdEventoFK, String FechaSancion, String HoraSancion, String Descripcion) {
+    public SancionVO(String IdSancion, String IdTipoSancionFK, String IdUsuarioFK, String IdEventoFK, String FechaSancion, String Descripcion) {
         this.IdSancion = IdSancion;
         this.IdTipoSancionFK = IdTipoSancionFK;
         this.IdUsuarioFK = IdUsuarioFK;
         this.IdEventoFK = IdEventoFK;
         this.FechaSancion = FechaSancion;
-        this.HoraSancion = HoraSancion;
         this.Descripcion = Descripcion;
     }
 
@@ -72,13 +70,6 @@ public class SancionVO {
         this.FechaSancion = FechaSancion;
     }
 
-    public String getHoraSancion() {
-        return HoraSancion;
-    }
-
-    public void setHoraSancion(String HoraSancion) {
-        this.HoraSancion = HoraSancion;
-    }
 
     public String getDescripcion() {
         return Descripcion;
